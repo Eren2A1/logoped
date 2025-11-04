@@ -209,4 +209,38 @@ document.querySelector('.whatsapp-btn')?.addEventListener('click', (e) => {
 // === ВЫЗОВЫ ПРИ ЗАГРУЗКЕ ===
 renderCalendar();
 renderNews();
+
 if (document.querySelector('#admin')) renderCalendar(true);
+// === БУРГЕР-МЕНЮ ===
+function toggleMobileMenu() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const burger = document.querySelector('.burger');
+    const overlay = document.getElementById('mobile-menu-overlay');
+
+    if (!mobileMenu || !burger) return;
+
+    // Создаём overlay, если его нет
+    if (!overlay) {
+        const newOverlay = document.createElement('div');
+        newOverlay.id = 'mobile-menu-overlay';
+        newOverlay.onclick = toggleMobileMenu;
+        document.body.appendChild(newOverlay);
+    }
+
+    const isActive = mobileMenu.classList.toggle('active');
+    burger.classList.toggle('active', isActive);
+    document.getElementById('mobile-menu-overlay').classList.toggle('active', isActive);
+
+    // Блокируем скролл страницы
+    document.body.style.overflow = isActive ? 'hidden' : '';
+}
+
+// Закрытие при клике вне меню
+document.addEventListener('click', (e) => {
+    const mobileMenu = document.getElementById('mobile-menu');
+    const burger = document.querySelector('.burger');
+    if (mobileMenu && mobileMenu.classList.contains('active') && 
+        !mobileMenu.contains(e.target) && !burger.contains(e.target)) {
+        toggleMobileMenu();
+    }
+});
