@@ -9,10 +9,14 @@
 </head>
 <body>
     <div class="wave-bg"></div>
-
     <header>
         <div class="logo">Логопед</div>
-        <nav>
+        <div class="burger" onclick="toggleMobileMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <nav class="nav-desktop">
             <ul class="nav-links">
                 <li><a href="index.html">Главная</a></li>
                 <li><a href="parents.html">Родителям</a></li>
@@ -22,79 +26,62 @@
                 <li><a href="reviews.html">Отзывы</a></li>
             </ul>
         </nav>
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-header">
+                <div class="logo">Логопед</div>
+                <span class="close-menu" onclick="toggleMobileMenu()">&times;</span>
+            </div>
+            <ul class="mobile-nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="parents.html">Родителям</a></li>
+                <li><a href="colleagues.html">Коллегам</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="schedule.html">Расписание</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+            </ul>
+        </div>
     </header>
-
     <main>
         <section id="admin">
             <h1>Админка</h1>
-            <p style="font-size: 20px; max-width: 800px; margin: 0 auto;">Добавляй новости, события, фото. Всё сохраняется в браузере.</p>
-            
-            <button onclick="toggleAdmin()" style="padding: 15px 30px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; cursor: pointer; font-size: 18px; margin: 20px 0;">
-                Добавить контент
-            </button>
-
-            <!-- Форма добавления -->
-            <form class="admin-form" style="display: none; max-width: 700px; margin: 30px auto; background: white; padding: 40px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1);">
-                <label for="admin-title">Заголовок:</label>
-                <input type="text" id="admin-title" required style="width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; margin-bottom: 15px;">
-                
-                <label for="admin-desc">Описание / Дата / Ссылка:</label>
-                <textarea id="admin-desc" required style="width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; height: 100px; margin-bottom: 15px;"></textarea>
-                
-                <label for="admin-type">Тип:</label>
-                <select id="admin-type" style="width: 100%; padding: 14px; border: 2px solid #ddd; border-radius: 12px; margin-bottom: 20px;">
+            <p style="font-size: 20px; max-width: 800px; margin: 0 auto;">Добавляй новости, фото, события. Сохраняется в браузере (localStorage). Для фото — загружай в img/ вручную.</p>
+            <button onclick="toggleAdmin()" style="padding: 15px 30px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; cursor: pointer;">Добавить</button>
+            <form class="admin-form">
+                <input id="admin-title" placeholder="Заголовок (новость/событие)" required>
+                <textarea id="admin-desc" placeholder="Описание/дата" required></textarea>
+                <select id="admin-type">
                     <option value="news">Новость</option>
+                    <option value="photo">Фото</option>
                     <option value="event">Событие</option>
-                    <option value="photo">Фото (добавь в img/ вручную)</option>
                 </select>
-                
-                <button type="button" onclick="addContent(document.getElementById('admin-type').value)" style="padding: 14px 40px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; font-size: 18px; cursor: pointer; width: 100%;">
-                    Сохранить
-                </button>
+                <button type="button" onclick="addContent(document.getElementById('admin-type').value)">Сохранить</button>
             </form>
-
-            <!-- Редактирование расписания -->
-            <section id="edit-schedule" style="margin-top: 60px;">
+            <section id="edit-schedule">
                 <h2>Редактировать расписание</h2>
-                <div class="calendar-container">
-                    <!-- Здесь JS вставит события с кнопкой "Удалить" -->
-                </div>
+                <div class="calendar-container"></div>
             </section>
         </section>
     </main>
-
     <footer>
-        <p>Тел: +7 (XXX) XXX-XX-XX | email@logoped.kz</p>
+        <p>Тел: +7 (771) 299-99-55 | email@logoped.kz</p>
         <div id="map">
-            <iframe src="https://widget.2gis.com/..." width="100%" height="500"></iframe>
+            <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9a8f5e3b8c3e4d1f2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8&source=constructor" width="100%" height="500" frameborder="0"></iframe>
         </div>
     </footer>
-
-    <a href="https://wa.me/77771234567" class="whatsapp-btn" target="_blank">
+    <a href="https://wa.me/77712999955" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-
-    <!-- МОДАЛКА ПАРОЛЯ (РАБОЧАЯ) -->
+    <!-- МОДАЛКА ПАРОЛЯ -->
     <div id="password-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center;">
         <div style="background: white; padding: 40px; border-radius: 25px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
-            <h2 style="color: #0056b3; margin-bottom: 20px;">🔐 Вход в админку</h2>
-            <input 
-                type="password" 
-                id="admin-password-input" 
-                placeholder="Введите пароль" 
-                style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin-bottom: 20px;"
-                onkeypress="if(event.key==='Enter') checkAdminPassword()"
-            >
-            <button 
-                onclick="checkAdminPassword()" 
-                style="padding: 14px 40px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; font-size: 18px; cursor: pointer; width: 100%;"
-            >
+            <h2 style="color: #0056b3; margin-bottom: 20px;">Вход в админку</h2>
+            <input type="password" id="admin-password-input" placeholder="Введите пароль" style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin-bottom: 20px;" onkeypress="if(event.key==='Enter') checkAdminPassword()">
+            <button onclick="checkAdminPassword()" style="padding: 14px 40px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; font-size: 18px; cursor: pointer; width: 100%;">
                 Войти
             </button>
-            <p id="password-error" style="color: red; margin-top: 15px; display: none;">Неверный пароль! Попытка 1 из 3</p>
+            <p id="password-error" style="color: red; margin-top: 15px; display: none;">Неверный пароль!</p>
         </div>
     </div>
-
     <script src="script.js"></script>
 </body>
 </html>
