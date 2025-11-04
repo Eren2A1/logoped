@@ -41,47 +41,69 @@
             </ul>
         </div>
     </header>
+
     <main>
-        <section id="admin">
-            <h1>Админка</h1>
-            <p style="font-size: 20px; max-width: 800px; margin: 0 auto;">Добавляй новости, фото, события. Сохраняется в браузере (localStorage). Для фото — загружай в img/ вручную.</p>
-            <button onclick="toggleAdmin()" style="padding: 15px 30px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; cursor: pointer;">Добавить</button>
-            <form class="admin-form">
-                <input id="admin-title" placeholder="Заголовок (новость/событие)" required>
-                <textarea id="admin-desc" placeholder="Описание/дата" required></textarea>
-                <select id="admin-type">
-                    <option value="news">Новость</option>
-                    <option value="photo">Фото</option>
-                    <option value="event">Событие</option>
-                </select>
-                <button type="button" onclick="addContent(document.getElementById('admin-type').value)">Сохранить</button>
-            </form>
-            <section id="edit-schedule">
-                <h2>Редактировать расписание</h2>
-                <div class="calendar-container"></div>
-            </section>
+        <!-- АДМИНКА СКРЫТА ДО ПАРОЛЯ -->
+        <section id="admin-panel" style="display: none;">
+            <h1>Админ-панель</h1>
+            <p style="font-size: 18px; max-width: 800px; margin: 0 auto 40px;">Добавляй новости, события, фото. Всё сохраняется в браузере. Фото — кидай в папку <code>img/</code> вручную.</p>
+
+            <!-- КРАСИВАЯ ФОРМА -->
+            <div class="admin-card">
+                <h2>Добавить контент</h2>
+                <form class="admin-form">
+                    <input type="text" id="admin-title" placeholder="Заголовок (например: Новый вебинар)" required>
+                    <textarea id="admin-desc" placeholder="Описание, дата или ссылка" required></textarea>
+                    <select id="admin-type">
+                        <option value="news">Новость</option>
+                        <option value="event">Событие (расписание)</option>
+                        <option value="photo">Фото (укажи имя файла: img/photo1.jpg)</option>
+                    </select>
+                    <button type="button" onclick="addContent()" class="admin-btn">Добавить</button>
+                </form>
+            </div>
+
+            <!-- СПИСОК НОВОСТЕЙ -->
+            <div class="admin-card">
+                <h2>Новости</h2>
+                <div id="admin-news-list" class="admin-list"></div>
+            </div>
+
+            <!-- СПИСОК СОБЫТИЙ -->
+            <div class="admin-card">
+                <h2>События (расписание)</h2>
+                <div id="admin-events-list" class="admin-list"></div>
+            </div>
+
+            <!-- СПИСОК ФОТО -->
+            <div class="admin-card">
+                <h2>Фото в галерее</h2>
+                <p>Добавляй фото в папку <code>img/</code>, потом обнови страницу.</p>
+            </div>
         </section>
     </main>
+
     <footer>
         <p>Тел: +7 (771) 299-99-55 | email@logoped.kz</p>
         <div id="map">
             <iframe src="https://yandex.ru/map-widget/v1/?um=constructor%3A9a8f5e3b8c3e4d1f2a3b4c5d6e7f8g9h0i1j2k3l4m5n6o7p8q9r0s1t2u3v4w5x6y7z8&source=constructor" width="100%" height="500" frameborder="0"></iframe>
         </div>
     </footer>
+
     <a href="https://wa.me/77712999955" class="whatsapp-btn" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    <!-- МОДАЛКА ПАРОЛЯ -->
-    <div id="password-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 3000; align-items: center; justify-content: center;">
-        <div style="background: white; padding: 40px; border-radius: 25px; width: 90%; max-width: 400px; text-align: center; box-shadow: 0 15px 40px rgba(0,0,0,0.3);">
-            <h2 style="color: #0056b3; margin-bottom: 20px;">Вход в админку</h2>
-            <input type="password" id="admin-password-input" placeholder="Введите пароль" style="width: 100%; padding: 16px; border: 2px solid #ddd; border-radius: 12px; font-size: 16px; margin-bottom: 20px;" onkeypress="if(event.key==='Enter') checkAdminPassword()">
-            <button onclick="checkAdminPassword()" style="padding: 14px 40px; background: linear-gradient(45deg, #0056b3, #00bcd4); color: white; border: none; border-radius: 50px; font-size: 18px; cursor: pointer; width: 100%;">
-                Войти
-            </button>
-            <p id="password-error" style="color: red; margin-top: 15px; display: none;">Неверный пароль!</p>
+
+    <!-- МОДАЛКА ПАРОЛЯ (КРАСИВАЯ) -->
+    <div id="password-modal" class="modal">
+        <div class="modal-content">
+            <h2>Вход в админку</h2>
+            <input type="password" id="admin-password-input" placeholder="Пароль" autocomplete="off">
+            <button onclick="checkAdminPassword()" class="admin-btn">Войти</button>
+            <p id="password-error" class="error-msg"></p>
         </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
