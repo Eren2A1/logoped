@@ -10,19 +10,44 @@
 <body>
     <div class="wave-bg"></div>
 
-    <header>
-        <div class="logo">Логопед</div>
-        <nav>
-            <ul class="nav-links">
-                <li><a href="index.html">Главная</a></li>
-                <li><a href="parents.html">Родителям</a></li>
-                <li><a href="colleagues.html">Коллегам</a></li>
-                <li><a href="gallery.html">Галерея</a></li>
-                <li><a href="schedule.html">Расписание</a></li>
-                <li><a href="reviews.html">Отзывы</a></li>
-            </ul>
-        </nav>
-    </header>
+   <header>
+    <div class="logo">Логопед</div>
+
+    <!-- БУРГЕР-КНОПКА (только на мобильных) -->
+    <div class="burger" onclick="toggleMobileMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+
+    <!-- МЕНЮ -->
+    <nav class="nav-desktop">
+        <ul class="nav-links">
+            <li><a href="index.html">Главная</a></li>
+            <li><a href="parents.html">Родителям</a></li>
+            <li><a href="colleagues.html">Коллегам</a></li>
+            <li><a href="gallery.html">Галерея</a></li>
+            <li><a href="schedule.html">Расписание</a></li>
+            <li><a href="reviews.html">Отзывы</a></li>
+        </ul>
+    </nav>
+
+    <!-- МОБИЛЬНОЕ МЕНЮ (скрытое) -->
+    <div id="mobile-menu" class="mobile-menu">
+        <div class="mobile-menu-header">
+            <div class="logo">Логопед</div>
+            <span class="close-menu" onclick="toggleMobileMenu()">&times;</span>
+        </div>
+        <ul class="mobile-nav-links">
+            <li><a href="index.html" onclick="toggleMobileMenu()">Главная</a></li>
+            <li><a href="parents.html" onclick="toggleMobileMenu()">Родителям</a></li>
+            <li><a href="colleagues.html" onclick="toggleMobileMenu()">Коллегам</a></li>
+            <li><a href="gallery.html" onclick="toggleMobileMenu()">Галерея</a></li>
+            <li><a href="schedule.html" onclick="toggleMobileMenu()">Расписание</a></li>
+            <li><a href="reviews.html" onclick="toggleMobileMenu()">Отзывы</a></li>
+        </ul>
+    </div>
+</header>
 
     <main>
         <section id="welcome">
@@ -66,4 +91,5 @@
 
     <script src="script.js"></script>
 </body>
+
 </html>
