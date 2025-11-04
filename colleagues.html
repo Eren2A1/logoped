@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логопед - Для коллег</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="wave-bg"></div>
+
+    <header>
+        <div class="logo">Логопед</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="parents.html">Родителям</a></li>
+                <li><a href="colleagues.html">Коллегам</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="schedule.html">Расписание</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="colleagues">
+            <h1>Для коллег</h1>
+            <p style="font-size: 20px; max-width: 800px; margin: 0 auto;">Семинары по повышению квалификации. Приглашаем экспертов из других стран. Получайте сертификаты и новые навыки.</p>
+        </section>
+
+        <section id="certificates">
+            <h2>Сертификаты и семинары</h2>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="img/certificate1.jpg" alt="Сертификат 1">
+                    <div class="overlay"><p>Сертификат по логопедии 2024</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/certificate2.jpg" alt="Сертификат 2">
+                    <div class="overlay"><p>Семинар с экспертом из Европы</p></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="news">
+            <h2>Новости</h2>
+            <p>Здесь будут новости из админки (добавь через JS, если нужно рендерить динамически).</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>Тел: +7 (XXX) XXX-XX-XX | email@logoped.kz</p>
+        <div id="map">
+            <iframe src="https://widget.2gis.com/..." width="100%" height="500"></iframe>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/77771234567" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Лайтбокс -->
+    <div id="lightbox" class="lightbox">
+        <img id="lightbox-img" src="" alt="">
+        <span class="close-lightbox">&times;</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

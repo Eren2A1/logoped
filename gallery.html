@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Логопед - Галерея</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+    <div class="wave-bg"></div>
+
+    <header>
+        <div class="logo">Логопед</div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html">Главная</a></li>
+                <li><a href="parents.html">Родителям</a></li>
+                <li><a href="colleagues.html">Коллегам</a></li>
+                <li><a href="gallery.html">Галерея</a></li>
+                <li><a href="schedule.html">Расписание</a></li>
+                <li><a href="reviews.html">Отзывы</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="gallery">
+            <h1>Галерея работ и семинаров</h1>
+            <p style="font-size: 20px; max-width: 800px; margin: 0 auto;">Фото с занятий, сертификаты и моменты с семинаров.</p>
+            <div class="gallery-container">
+                <div class="gallery-item">
+                    <img src="img/gallery1.jpg" alt="Работа 1">
+                    <div class="overlay"><p>Занятие с детьми</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/gallery2.jpg" alt="Работа 2">
+                    <div class="overlay"><p>Семинар 2024</p></div>
+                </div>
+                <div class="gallery-item">
+                    <img src="img/certificate1.jpg" alt="Сертификат">
+                    <div class="overlay"><p>Сертификат участника</p></div>
+                </div>
+                <!-- Добавь больше фото из админки -->
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>Тел: +7 (XXX) XXX-XX-XX | email@logoped.kz</p>
+        <div id="map">
+            <iframe src="https://widget.2gis.com/..." width="100%" height="500"></iframe>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/77771234567" class="whatsapp-btn" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <!-- Лайтбокс -->
+    <div id="lightbox" class="lightbox">
+        <img id="lightbox-img" src="" alt="">
+        <span class="close-lightbox">&times;</span>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
