@@ -101,3 +101,4 @@ document.addEventListener('click', (e) => {
 renderCalendar();
 renderNews();
 if (document.querySelector('#admin')) renderCalendar(true);
+
