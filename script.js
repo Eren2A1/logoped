@@ -4,51 +4,7 @@ let events = JSON.parse(localStorage.getItem('events')) || [
 ];
 let news = JSON.parse(localStorage.getItem('news')) || [];
 
-// === ПАРОЛЬ ДЛЯ АДМИНКИ ===
-const ADMIN_PASSWORD = 'mysecret'; // ← СМЕНИ НА СВОЙ!
-let passwordAttempts = 0;
-
-function showPasswordModal() {
-    const modal = document.getElementById('password-modal');
-    const input = document.getElementById('admin-password-input');
-    const error = document.getElementById('password-error');
-    
-    if (modal && input) {
-        modal.style.display = 'flex';
-        input.value = '';
-        input.focus();
-        error.style.display = 'none';
-        passwordAttempts = 0;
-    }
-}
-
-function checkAdminPassword() {
-    const input = document.getElementById('admin-password-input').value;
-    const error = document.getElementById('password-error');
-    const modal = document.getElementById('password-modal');
-
-    if (input === ADMIN_PASSWORD) {
-        modal.style.display = 'none';
-        passwordAttempts = 0;
-        alert('Добро пожаловать в админку!');
-    } else {
-        passwordAttempts++;
-        error.style.display = 'block';
-        error.textContent = `Неверный пароль! Попытка ${passwordAttempts} из 3`;
-        if (passwordAttempts >= 3) {
-            alert('Слишком много попыток. Доступ закрыт.');
-            window.location.href = 'index.html';
-        }
-    }
-}
-
-if (document.querySelector('#admin')) {
-    document.addEventListener('DOMContentLoaded', () => {
-        setTimeout(showPasswordModal, 100);
-    });
-}
-
-// === БУРГЕР-МЕНЮ (ИСПРАВЛЕНО) ===
+// === БУРГЕР-МЕНЮ ===
 function toggleMobileMenu() {
     const mobileMenu = document.getElementById('mobile-menu');
     const burger = document.querySelector('.burger');
@@ -85,7 +41,7 @@ document.querySelectorAll('.mobile-nav-links a').forEach(link => {
     });
 });
 
-// Закрытие при клике вне меню
+// Закрытие при клике вне
 document.addEventListener('click', (e) => {
     const mobileMenu = document.getElementById('mobile-menu');
     const burger = document.querySelector('.burger');
@@ -95,10 +51,43 @@ document.addEventListener('click', (e) => {
     }
 });
 
-// === ПЛАВНЫЙ СКРОЛЛ, АНИМАЦИЯ, ФОРМЫ, РЕНДЕР, ЛАЙТБОКС, WhatsApp ===
-// (остальной JS из предыдущих версий — оставь без изменений)
+// === АНИМАЦИЯ ПРИ СКРОЛЛЕ ===
+function checkVisibility() {
+    document.querySelectorAll('section').forEach(section => {
+        const rect = section.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+            section.classList.add('visible');
+        }
+    });
+}
+window.addEventListener('scroll', checkVisibility);
+window.addEventListener('load', checkVisibility);
 
-renderCalendar();
+// === РЕНДЕР НОВОСТЕЙ ===
+function renderNews() {
+    const container = document.querySelector('.news-container');
+    if (!container) return;
+    container.innerHTML = news.map(item => `
+        <div class="news-item">
+            <h3>${item.title}</h3>
+            <p>${item.desc}</p>
+        </div>
+    `).join('');
+    if (news.length === 0) {
+        container.innerHTML = '<p>Пока новостей нет.</p>';
+    }
+}
+
+// === ШАПКА ПРИ СКРОЛЛЕ ===
+window.addEventListener('scroll', () => {
+    const header = document.querySelector('header');
+    if (window.scrollY > 100) {
+        header.classList.add('scrolled');
+    } else {
+        header.classList.remove('scrolled');
+    }
+});
+
+// === ЗАПУСК ===
 renderNews();
-if (document.querySelector('#admin')) renderCalendar(true);
-
+checkVisibility();
